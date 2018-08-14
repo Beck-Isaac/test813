@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class KaKaoAdapter extends BaseAdapter{
+
     private ArrayList<Data> userlist;
     private Context context;
 
@@ -17,6 +18,7 @@ public class KaKaoAdapter extends BaseAdapter{
         this.userlist = userlist;
         this.context = context;
     }
+
     @Override
     public int getCount() {
         return userlist.size();
@@ -34,8 +36,11 @@ public class KaKaoAdapter extends BaseAdapter{
 
     @Override
     public View getView(int i, View view, ViewGroup parent) {
-        LayoutInflater inflate = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        view = inflate.inflate(R.layout.item_view, parent, false);
+        //  View가 있는지 없는지 판단!
+        if(view == null) {
+            LayoutInflater inflate = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflate.inflate(R.layout.item_view, parent, false);
+        }
         TextView titleView = view.findViewById(R.id.itemTitleTextView);
         TextView dataView = view.findViewById(R.id.itemContextTextView);
         titleView.setText(userlist.get(i).getTitle());
